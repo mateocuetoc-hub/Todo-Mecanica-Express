@@ -39,6 +39,30 @@ Construir una solución web que conecte la captación de clientes con la operaci
 | V4 — Seguimiento | Agregar historial, notificaciones, portal del cliente y reportes. |
 | V5 — Expansión | Evaluar inventario, pagos, facturación e integraciones avanzadas. |
 
+## Flujo de trabajo con ramas
+
+El repositorio seguirá un ciclo evolutivo similar a una espiral:
+
+- `main` representa la última versión aprobada, validada y funcional. Es la versión que podrá revisar el responsable del taller.
+- Todo desarrollo, experimento o cambio solicitado mediante feedback se realiza en una rama temporal creada desde `main`.
+- Mientras una versión esté en revisión, se refina dentro de su rama sin afectar la versión estable.
+- Una versión solamente se incorpora a `main` después de ser presentada, revisada y aprobada.
+- Los cambios descartados no se incorporan a `main`.
+- Después de integrar o descartar el trabajo, la rama temporal se elimina para mantener limpio el repositorio.
+- Las versiones validadas se identificarán con etiquetas de Git para conservar hitos históricos sin mantener ramas antiguas.
+
+### Convención inicial
+
+| Tipo de rama | Ejemplo | Uso |
+| --- | --- | --- |
+| Versión | `version/v1-captacion` | Integrar y presentar una vuelta completa de la espiral. |
+| Funcionalidad | `feature/agenda-semanal` | Desarrollar una función concreta. |
+| Feedback | `feedback/v1-ajustes-inicio` | Aplicar observaciones recibidas durante una validación. |
+| Corrección | `fix/reserva-duplicada` | Corregir un defecto específico. |
+| Documentación | `docs/flujo-recepcion` | Modificar requisitos o documentación. |
+
+Cuando una versión necesite varias funciones, las ramas `feature/*` se integrarán primero en su rama `version/*`. La rama de versión se fusionará con `main` únicamente al concluir la validación.
+
 ## Principios del proyecto
 
 - No programar módulos sin validar primero la necesidad.
@@ -47,6 +71,8 @@ Construir una solución web que conecte la captación de clientes con la operaci
 - Proteger los datos personales y limitar el acceso según el rol.
 - Mantener documentación y criterios de aceptación por versión.
 - No almacenar credenciales, datos reales de clientes ni archivos sensibles en el repositorio.
+- Mantener `main` estable, presentable y ejecutable.
+- Registrar el feedback y la decisión de aprobación antes de fusionar cada versión.
 
 ## Estado
 
